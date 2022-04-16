@@ -51,16 +51,20 @@ while game:
     boll.rect.x += speed_x
     boll.rect.y += speed_y
     '''if boll.rect.x < 0 or boll.rect.x > 700:
-        boll.rect.x *= -1'''
-    if boll.rect.y < 0 or boll.rect.y > 500:
+        boll.rect.x = -1'''
+    if boll.rect.y < 0 or boll.rect.y > 455:
         boll.rect.y *= -1
         
     for e in event.get():
         if e.type == QUIT:
             game = False
     if finish != True:
-
-
+        boll.rect.x += speed_x
+        boll.rect.y += speed_y
+        '''if boll.rect.x < 0 or boll.rect.x > 700:
+            boll.rect.x = -1'''
+        if boll.rect.y < 0 or boll.rect.y > 455:
+            boll.rect.y = -boll.rect.y
         window.blit(background,(0, 0))
         player.update()
         player2.update()
