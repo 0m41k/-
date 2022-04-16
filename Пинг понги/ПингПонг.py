@@ -26,18 +26,9 @@ class Player2(GameSprite):
             self.rect.y -= self.speed
         if keys[K_s] and self.rect.y < win_height - 80:
             self.rect.y += self.speed   
-class Boll(GameSprite):
-    def update(self):
-        if self.rect.x <= 470:
-            self.side = "right"
-        if self.rect.x >= win_width - 85:
-            self.side = "left"
-        if self.side == "left":
-            self.rect.x -= self.speed
-        else:
-            self.rect.x += self.speed
- 
 
+ 
+speed_x, speed_y = 3,3
 win_width = 700
 win_height = 500
 window = display.set_mode((win_width, win_height))
@@ -45,7 +36,7 @@ display.set_caption("Пинг-Понг")
 background = transform.scale(image.load("original.jpg"), (win_width, win_height))
 player = Player('Ракетка.png', 625, win_height - 300, 4, 125, 65)
 player2 = Player2('Ракетка.png', 10, win_height - 300, 4, 125, 65)
-boll = Boll('мячик.png', win_width - 80, 280, 2, 45, 45)
+boll = Player('мячик.png',350, 250, 0, 45, 45)
 
 game = True
 finish = False
@@ -57,17 +48,27 @@ win = font.render('YOU WIN!', True, (255, 215, 0))
 lose = font.render('YOU LOSE!', True, (180, 0, 0))
 
 while game:
+    boll.rect.x += speed_x
+    boll.rect.y += speed_y
+    '''if boll.rect.x < 0 or boll.rect.x > 700:
+        boll.rect.x *= -1'''
+    if boll.rect.y < 0 or boll.rect.y > 500:
+        boll.rect.y *= -1
+        
     for e in event.get():
         if e.type == QUIT:
             game = False
     if finish != True:
+
+
         window.blit(background,(0, 0))
         player.update()
         player2.update()
-        boll.update()
         player.reset()
         player2.reset()
         boll.reset()
+    
 
-    display.update()
+        display.update()
     clock.tick(FPS)
+ 
