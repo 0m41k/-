@@ -86,10 +86,14 @@ while game:
             finish = True
             window.blit(lose1, (175, 100))
             Reset.reset()
+            if speed_x > 0:
+                speed_x *= -1
         if ball.rect.x > 655:
             finish = True
             window.blit(lose2, (175, 100))    
             Reset.reset()
+            if speed_x < 0:
+                speed_x *= -1
     
         player.reset()
         player2.reset()
