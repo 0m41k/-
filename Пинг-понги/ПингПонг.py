@@ -32,7 +32,7 @@ win_width = 700
 win_height = 500
 window = display.set_mode((win_width, win_height))
 display.set_caption("Пинг-Понг")
-background = transform.scale(image.load("original.jpg"), (win_width, win_height))
+background = transform.scale(image.load("поле.jpg"), (win_width, win_height))
 
 player = Player('Ракетка 2ю0.jpg', 680, win_height - 300, 4, 125, 10)
 player2 = Player('Ракетка 2ю0.jpg', 10, win_height - 300, 4, 125, 10)
