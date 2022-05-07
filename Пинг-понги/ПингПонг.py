@@ -27,6 +27,8 @@ class Player(GameSprite):
             self.rect.y += self.speed   
             
 
+play1 = 0
+play2 = 0
 
 win_width = 700
 win_height = 500
@@ -46,20 +48,26 @@ clock = time.Clock()
 FPS = 90
 
 font.init()
-font = font.Font(None, 70)
+font = font.SysFont('Arial', 70)
 lose1 = font.render('PLAYER 2 LOSE!', True, (180, 0, 0))
 lose2 = font.render('PLAYER 1 LOSE!', True, (180, 0, 0))
+play1l = font.render(str(play1), True, (0, 0, 0))
+play2l = font.render(str(play2), True, (0, 0, 0))
 
-speed_x = 3
+speed_x = 3 
 speed_y = 3
 
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
-        if e.type == MOUSEBUTTONDOWN:
-            if e.button == 1:
+        keys = key.get_pressed()
+        if keys[K_r]:
                 if finish != False:
+                    player.rect.x = 680 
+                    player.rect.y = win_height - 300
+                    player2.rect.x = 10
+                    player2.rect.y = win_height - 300
                     ball.rect.x = 350
                     ball.rect.y = 250
                     finish = False
@@ -71,8 +79,9 @@ while game:
 
         ball.rect.x += speed_x
         ball.rect.y += speed_y
-   
         
+        play1l = font.render(str(play1), True, (0, 0, 0))
+        play2l = font.render(str(play2), True, (0, 0, 0))
         
         
         if sprite.collide_rect(player, ball) or sprite.collide_rect(player2, ball):
@@ -84,19 +93,23 @@ while game:
             time.delay(20)
         if ball.rect.x < 0:
             finish = True
+            play2 += 1
             window.blit(lose1, (175, 100))
             Reset.reset()
             if speed_x > 0:
                 speed_x *= -1
         if ball.rect.x > 655:
             finish = True
+            play1 += 1
             window.blit(lose2, (175, 100))    
             Reset.reset()
             if speed_x < 0:
                 speed_x *= -1
-    
+        
         player.reset()
         player2.reset()
         ball.reset()
+        window.blit(play1l, (5,5))
+        window.blit(play2l, (665,5))
     display.update()
     clock.tick(FPS)
