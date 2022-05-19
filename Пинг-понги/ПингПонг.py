@@ -48,7 +48,7 @@ clock = time.Clock()
 FPS = 90
 
 font.init()
-font = font.SysFont('Arial', 70)
+font = font.SysFont('Comic Sans', 55)
 lose1 = font.render('PLAYER 2 LOSE!', True, (180, 0, 0))
 lose2 = font.render('PLAYER 1 LOSE!', True, (180, 0, 0))
 play1l = font.render(str(play1), True, (0, 0, 0))
@@ -94,22 +94,22 @@ while game:
         if ball.rect.x < 0:
             finish = True
             play2 += 1
-            window.blit(lose1, (175, 100))
+            window.blit(lose1, (200, 100))
             Reset.reset()
             if speed_x > 0:
                 speed_x *= -1
         if ball.rect.x > 655:
             finish = True
             play1 += 1
-            window.blit(lose2, (175, 100))    
+            window.blit(lose2, (200, 100))    
             Reset.reset()
             if speed_x < 0:
                 speed_x *= -1
-        
+        window.blit(play1l, (310,5))
+        window.blit(play2l, (370,5))
         player.reset()
         player2.reset()
         ball.reset()
-        window.blit(play1l, (5,5))
-        window.blit(play2l, (665,5))
+        
     display.update()
     clock.tick(FPS)
