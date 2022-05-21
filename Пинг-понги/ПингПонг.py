@@ -36,10 +36,10 @@ window = display.set_mode((win_width, win_height))
 display.set_caption("Пинг-Понг")
 background = transform.scale(image.load("поле.jpg"), (win_width, win_height))
 
-player = Player('Ракетка 2ю0.jpg', 680, win_height - 300, 4, 125, 10)
-player2 = Player('Ракетка 2ю0.jpg', 10, win_height - 300, 4, 125, 10)
-ball = Player('мячик.png',350, 250, 4, 45, 45)
-Reset = Player('рестарт.png', 300, 200, 0, 100, 100)
+player = Player('rocket.jpg', 680, win_height - 300, 4, 125, 10)
+player2 = Player('rocket.jpg', 10, win_height - 300, 4, 125, 10)
+ball = Player('ball.png',350, 250, 4, 45, 45)
+Reset = Player('restart.png', 300, 200, 0, 100, 100)
 
 game = True
 finish = False
